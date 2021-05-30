@@ -1,0 +1,37 @@
+Format :
+	Student led -- once a week -- 10-15 hours a week
+Objections:
+	0. Learn python -- code academy -- object oriented programming (class hierarchy) 
+		--loose suggestions	
+	1. Run bilby tutorials
+		1.0 which tutorials?	
+	2. Rerun Neil 1 & 2 in Bilby
+		2.1 Do Neil assignment 4 (PTMCMC) with bilby ptemcee -- maybe not fisher stuff though
+		2.2 Understand temp spacing stuff
+		2.3 Figure out checks
+			-- plot chains 
+			-- check mixing
+			-- check Detailed Balance
+			-- uninformative signal get prior back
+			-- burn in 	
+			-- AC 	
+	3. Run some examples on cluster
+		3.0 Install software on cluster
+		3.1 Hello world cluster job
+		3.2 slurm commands -- submission script
+		3.3 parallel jobs and multiple cores
+		3.4 monitor jobs 
+	4. Download the data
+		3.0 Find data, hdf5, gwpy, PSD estimates and different ways to calculate them, PSD understanding
+	5. Load 2 - 3 different waveform models and plot them (pycbc or LAL) 
+	6. Run bilby on GW data (bilby tutorials)
+		6.0 run gw170729 -- Taylor F2
+		6.1 run in dynesty and ptemcee and compare and contrast
+	7. Run bilby with modified waveforms
+		--Two options so far
+		7.0 Rewrite LALsuite c code and wrap in python
+		7.1 Map ppE to gIMR and call lalsuite python code
+
+TODO:
+	0. figure out which bilby tutorials to do, what should be presented
+	1. 
