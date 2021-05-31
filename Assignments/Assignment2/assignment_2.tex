@@ -1,0 +1,95 @@
+\documentclass[
+    aps,
+    10pt,
+    prd,
+    notitlepage,
+    onecolumn,s
+    tightenlines,
+    nofootinbib]{revtex4-1}
+
+\usepackage[linktocpage,breaklinks]{hyperref}
+\usepackage[usenames,dvipsnames]{xcolor}
+
+\usepackage{aas_macros}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsfonts}
+\usepackage{txfonts}
+\usepackage{bm}
+\usepackage{stmaryrd}
+\usepackage{tensor}
+\usepackage{mathrsfs}
+\usepackage[utf8]{inputenc}
+\usepackage{url}
+
+\usepackage{graphicx}
+\usepackage{epsfig}
+\usepackage{epstopdf}
+\usepackage[normalem]{ulem}
+
+\usepackage{natbib}
+\usepackage{hyperref}
+\usepackage{cleveref}
+%\hypersetup{colorlinks=true,
+%            citecolor=Black,
+%            linkcolor=Black,
+%            urlcolor=Black}
+\hypersetup{colorlinks=true}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\newcommand{\cd}{\nabla}
+\newcommand{\dd}{{\rm d}}
+\newcommand{\dinf}[1]{\,\dd #1}
+\newcommand{\nn}{\nonumber}
+\newcommand{\pd}{\partial}
+\newcommand{\ii}{{\rm i}}
+\newcommand{\calM}{{\cal M}}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\newcommand{\vp}{\varphi}
+\newcommand{\ve}{\varepsilon}
+\newcommand{\del}{\partial}
+\newcommand{\calg}{\mathcal G}
+\newcommand{\calc}{\mathcal C}
+\newcommand{\calv}{\mathcal V}
+\newcommand{\msun}{$_{\odot}$}
+\newcommand{\qg}{\mathfrak{q}}
+\newcommand{\software}[1]{\texttt{#1}}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{document}
+\title{Assignment 2}
+\date{\today}
+\maketitle
+In this problem set, we will begin to explore \href{https://git.ligo.org/lscsoft/bilby}{\software{Bilby}}, which is a package that provides a consistent framework to run different types of MCMC and nested samplers on generic distributions. 
+\software{Bilby} itself is not a sampler, but wraps popular samplers like \software{emcee} and \software{dynesty} with an additional layer to make the analysis as modular as possible. 
+\software{Bilby} is not specific to GW science, but can be used to sample from any probability distribution with any of the supported samplers.
+To begin with, you will explore three tutorials (2 from \software{Bilby} website and 1 from Deep).
+You should download both examples, run them, and be familiar enough with the code that you could modify the likelihood functions and samplers.
+\begin{enumerate}
+\item The first \href{https://git.ligo.org/lscsoft/bilby/-/blob/master/examples/core_examples/gaussian_example.py}{tutorial} fits a 1-D gaussian curve to a series of data drawn from a normal distribution. 
+In this context, the two parameters of the model are the mean ($\mu$) and standard deviation ($\sigma$) of the distribution.
+That is, our model is defined by the likelihood function
+\begin{equation}
+p( x | \mu, \sigma) = \frac{1}{\sqrt{\sigma^2 2 \pi}} e^{-\frac{1}{2} \frac{ (x - \mu)^2}{\sigma^2}}\,,
+\end{equation}
+where $x$ is our data.
+The analysis begins by defining a class for the likelihood of interest. 
+This format is the standard way \software{Bilby} works: you define a class object with the specific members (like the \software{log\_likelihood} function in this tutorial), and that provides enough abstraction for \software{Bilby} to pass this likelihood on to the sampler of choice.
+\software{Bilby} also allows you to set the priors for the parameters as well, which, for this tutorial, are uniform from $[0,5]$ and $[0,10]$ for $\mu$ and $\sigma$, respectively.
+The priors used in this tutorial are pre-made in \software{Bilby}, and are in the \software{bilby.core.prior} file, along with other common choices of priors.
+The priors can also be defined in a similar way as the likelihood, but custom priors will be addressed later.
+With the problem defined by the full posterior (prior + likelihood), the sampler can be run with \software{bilby.run\_sampler} and the results are plotted in a corner plot by \software{result.plot\_corner()}.
+
+First, read into the documentation of \software{Bilby} and \software{dynesty} to understand what the arguments of \software{run\_sampler} do. 
+Run the sampler for multiple different configurations and examine the output plot. 
+Some additional modifications you can explore is to draw samples from a non-gaussian distribution for the data (say student-t) and fit a gaussian to it, or modify the priors such that they are not uniform.
+\item The second \href{https://git.ligo.org/lscsoft/bilby/-/blob/master/examples/core_examples/linear_regression_unknown_noise.py}{tutorial} walks you through performing linear regression on a set of data with noise of unknown variance.
+In this tutorial, the model assumes the data is linear (with 2 parameters, the slope and the intercept), and that the noise is gaussian, but with unknown variance (with 1 additional parameter, on top of the signal model).
+The likelihood function in this tutorial uses the predefined Gaussian likelihood class already included in \software{Bilby}, so you should read into that class and understand the arguments to \software{bilby.core.likelihood.GaussianLikelihood}.
+The priors are again uniform for the 3 parameters.
+Again, run the tutorial and understand each line of it. 
+Then, modify the parameters, rerun the analysis, and examine the input.
+\item Run Deep's custom-prior tutorial
+\end{enumerate}
+\end{document}

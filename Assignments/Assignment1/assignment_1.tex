@@ -3,7 +3,7 @@
     10pt,
     prd,
     notitlepage,
-    twocolumn,s
+    onecolumn,s
     tightenlines,
     nofootinbib]{revtex4-1}
 
@@ -28,12 +28,8 @@
 \usepackage[normalem]{ulem}
 
 \usepackage{natbib}
-\usepackage{hyperref}
 \usepackage{cleveref}
-\hypersetup{colorlinks=true,
-            citecolor=Black,
-            linkcolor=Black,
-            urlcolor=Black}
+\hypersetup{colorlinks=true}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \newcommand{\cd}{\nabla}
@@ -62,4 +58,16 @@
 \end{abstract}
 \date{\today}
 \maketitle
+
+\begin{enumerate}
+\item Familiarize yourself with the python programming language. This is left as an open ended problem, but the following list of specific software packages are extremely useful in scientific computing related to GW science, and most will be involved in these assignments at some level. An overview-level understanding is recommended:
+\begin{enumerate}
+\item \href{https://numpy.org/}{Numpy}: numpy arrays, array slicing and indexing, fft, matrix operations, and draws from random distributions
+\item \href{https://pandas.pydata.org/}{Pandas}: dataframe creation and manipulation
+\item \href{https://www.scipy.org/}{Scipy}: interpolate, integrate, linalg, optimize, and stats
+\item \href{https://matplotlib.org/}{Matplotlib}: making line, scatter, and histogram plots and saving them to a pdf
+\item \href{https://www.astropy.org/}{Astropy}: constants and units
+\item class structures and object-oriented-programming styles: how to write classes in python
+\end{enumerate}
+\end{enumerate}
 \end{document}
