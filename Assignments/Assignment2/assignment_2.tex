@@ -89,6 +89,19 @@ The likelihood function in this tutorial uses the predefined Gaussian likelihood
 The priors are again uniform for the 3 parameters.
 Again, run the tutorial and understand each line of it. 
 Then, modify the parameters, rerun the analysis, and examine the input.
-\item Run Deep's custom-prior tutorial
+\item Create a custom prior class, and use it for sampling.
+	\begin{itemize}
+	\item The base prior module is \texttt{bilby.prior.Prior}.
+	\item You need to override at least two methods of this class: \texttt{prob} and \texttt{rescale}.
+	      The method \texttt{prob} is the normalized density function, $p(x)$. Ensure that the functions are
+	      vectorized i.e., they work with both scalars and numpy arrays. The \texttt{rescale} method is
+	      inverse of the cumulative distribution function, $P(x)$, i.e., it accepts $y \in [0, 1]$ and
+	      returns $x$ such that $y = P(x)$.
+	\item Try out with a prior peaked at zero with an exponential decay $\sim \exp(-\vert x \vert)$ up to
+	      $\vert x \vert \leq a$, then $0$.
+	\item Check sanity of your function by calling the \texttt{sample} method.
+	\item Go over the source code of the base prior class\footnote{\tiny{\url{https://git.ligo.org/lscsoft/bilby/-/blob/master/bilby/core/prior/base.py}}}
+	      to understand what all methods have been inherited. Try calling each of them.
+	\end{itemize}
 \end{enumerate}
 \end{document}
