@@ -53,7 +53,6 @@ Treat your submit file as any other file with some `#SBATCH ...` lines added tha
 ```python
 #!/usr/bin/env python
 #SBATCH --partition=GravityTheory
-#SBATCH --mail-type=FAIL
 #SBATCH --time=00:03:00
 #SBATCH --nodes=1
 #SBATCH --cpus-per-task=4
