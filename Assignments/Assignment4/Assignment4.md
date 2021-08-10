@@ -122,7 +122,6 @@ Usually, you will submit jobs via a shell script wrapper. For example, (check ou
 ```bash
 #!/bin/bash -l
 #SBATCH --partition=GravityTheory
-#SBATCH --mail-type=FAIL
 #SBATCH --time=01:00:00
 #SBATCH --nodes=1
 #SBATCH --cpus-per-task=10
